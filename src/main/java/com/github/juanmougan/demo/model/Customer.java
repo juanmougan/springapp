@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author juanma
@@ -22,6 +23,7 @@ public class Customer {
 	@Embedded
 	private PersonalData personalData = new PersonalData();
 	
+	@OneToMany
 	private List<Address> addresses;
 	
 	protected Customer() {
@@ -66,6 +68,12 @@ public class Customer {
 	
 	public void addAddress(Address address) {
 		this.addresses.add(address);
+		address.setCustomer(this);
+	}
+	
+	public void removeAddress(Address address) {
+		this.addresses.remove(address);
+		address.setCustomer(null);
 	}
 
 	@Override

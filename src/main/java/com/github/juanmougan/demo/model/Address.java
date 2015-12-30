@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +30,10 @@ public class Address {
 	private String zipCode;
 	
 	private String city;
+	
+	@ManyToOne
+	@JoinColumn(name = "CUSTOMER_ID", nullable = false)
+	private Customer customer;
 	
 	protected Address() {
 	}
@@ -62,6 +68,14 @@ public class Address {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }
