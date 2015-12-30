@@ -1,5 +1,6 @@
 package com.github.juanmougan.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -24,7 +25,7 @@ public class Customer {
 	private PersonalData personalData = new PersonalData();
 	
 	@OneToMany
-	private List<Address> addresses;
+	private List<Address> addresses = new ArrayList<>();
 	
 	protected Customer() {
 	}

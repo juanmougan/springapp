@@ -3,8 +3,10 @@
  */
 package com.github.juanmougan.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,11 +33,20 @@ public class Address {
 	
 	private String city;
 	
+//	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
+//	TODO check the mapping to save an Address when a Customer is saved
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID", nullable = false)
 	private Customer customer;
 	
 	protected Address() {
+	}
+	
+	public Address(String street, String zipCode, String city) {
+		super();
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
 	}
 
 	public long getId() {

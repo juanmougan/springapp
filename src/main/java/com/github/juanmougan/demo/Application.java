@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.github.juanmougan.demo.model.Address;
 import com.github.juanmougan.demo.model.Customer;
 import com.github.juanmougan.demo.repository.CustomerRepository;
 
@@ -29,6 +30,11 @@ public class Application {
 			customerRepository.save(new Customer("Kim", "Bauer"));
 			customerRepository.save(new Customer("David", "Palmer"));
 			customerRepository.save(new Customer("Michelle", "Dessler"));
+			
+			// Fancier customer - has one address
+//			Customer president = new Customer("President", "Palmer");
+//			president.addAddress(new Address("1600 Pennsylvania Ave.", "DC20500", "Washington DC"));
+//			customerRepository.save(president);
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
