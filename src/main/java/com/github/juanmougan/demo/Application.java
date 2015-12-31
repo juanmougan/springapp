@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.github.juanmougan.demo.model.Address;
 import com.github.juanmougan.demo.model.Customer;
+import com.github.juanmougan.demo.repository.AddressRepository;
 import com.github.juanmougan.demo.repository.CustomerRepository;
 
 @SpringBootApplication
@@ -21,7 +22,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(CustomerRepository customerRepository) {
+	public CommandLineRunner demo(CustomerRepository customerRepository, AddressRepository addressRepository) {
 		return (args) -> {
 			// save a couple of customers
 			customerRepository.save(new Customer("Jack", "Bauer"));
@@ -50,14 +51,12 @@ public class Application {
 			log.info(customer.toString());
 			log.info("");
 
-			// fetch customers by last name
-			// log.info("Customer found with findByLastName('Bauer'):");
-			// log.info("--------------------------------------------");
-			// for (Customer bauer :
-			// personalDatarepository.findByLastName("Bauer")) {
-			// log.info(bauer.toString());
-			// }
-
+			// fetch addresses by city
+			log.info("Addresses found with findByCity('Washington DC'):");
+			log.info("--------------------------------------------");
+			for (Address address : addressRepository.findByCity("Washington DC")) {
+				log.info(address.toString());
+			}
 			log.info("");
 		};
 	}
