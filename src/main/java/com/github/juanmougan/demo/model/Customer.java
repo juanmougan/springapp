@@ -3,6 +3,7 @@ package com.github.juanmougan.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Customer {
 	@Embedded
 	private PersonalData personalData = new PersonalData();
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>();
 	
 	protected Customer() {

@@ -2,7 +2,6 @@ package com.github.juanmougan.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,11 +29,11 @@ public class Application {
 			customerRepository.save(new Customer("Kim", "Bauer"));
 			customerRepository.save(new Customer("David", "Palmer"));
 			customerRepository.save(new Customer("Michelle", "Dessler"));
-			
+
 			// Fancier customer - has one address
-//			Customer president = new Customer("President", "Palmer");
-//			president.addAddress(new Address("1600 Pennsylvania Ave.", "DC20500", "Washington DC"));
-//			customerRepository.save(president);
+			Customer president = new Customer("President", "Palmer");
+			president.addAddress(new Address("1600 Pennsylvania Ave.", "DC20500", "Washington DC"));
+			customerRepository.save(president);
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
@@ -52,11 +51,13 @@ public class Application {
 			log.info("");
 
 			// fetch customers by last name
-			log.info("Customer found with findByLastName('Bauer'):");
-			log.info("--------------------------------------------");
-//			for (Customer bauer : personalDatarepository.findByLastName("Bauer")) {
-//				log.info(bauer.toString());
-//			}
+			// log.info("Customer found with findByLastName('Bauer'):");
+			// log.info("--------------------------------------------");
+			// for (Customer bauer :
+			// personalDatarepository.findByLastName("Bauer")) {
+			// log.info(bauer.toString());
+			// }
+
 			log.info("");
 		};
 	}
