@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,10 +25,11 @@ public class Customer {
 
 	@Embedded
 	private PersonalData personalData = new PersonalData();
-	
-	@OneToMany(cascade = CascadeType.ALL)
+
+	// TODO remove Eager mapping here
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Address> addresses = new ArrayList<>();
-	
+
 	protected Customer() {
 	}
 
@@ -67,12 +69,12 @@ public class Customer {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-	
+
 	public void addAddress(Address address) {
 		this.addresses.add(address);
 		address.setCustomer(this);
 	}
-	
+
 	public void removeAddress(Address address) {
 		this.addresses.remove(address);
 		address.setCustomer(null);
@@ -80,8 +82,14 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", this.getId(),
+		String result = String.format("Customer[id=%d, firstName='%s', lastName='%s']", this.getId(),
 				personalData.getFirstName(), personalData.getLastName());
+		if (addresses != null) {
+			for (int i = 0; i < addresses.size(); i++) {
+				result = result + ", address[" + i + "]" + addresses.get(i).toString();
+			}
+		}
+		return result;
 	}
 
 }

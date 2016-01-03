@@ -22,7 +22,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(CustomerRepository customerRepository, AddressRepository addressRepository) {
+	public CommandLineRunner demoCustomerAddress(CustomerRepository customerRepository, AddressRepository addressRepository) {
 		return (args) -> {
 			// save a couple of customers
 			customerRepository.save(new Customer("Jack", "Bauer"));
@@ -59,6 +59,12 @@ public class Application {
 			}
 			log.info("");
 		};
+		
+	}
+	
+	@Bean
+	public CommandLineRunner demoAccountMovement() {
+		return (args) -> {};
 	}
 
 }
