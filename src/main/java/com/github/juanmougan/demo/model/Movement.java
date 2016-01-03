@@ -5,6 +5,7 @@ package com.github.juanmougan.demo.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
@@ -17,6 +18,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joda.time.DateTime;
 
 /**
@@ -36,6 +38,7 @@ public abstract class Movement {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
+	@Column(length = 290)			// 255 is not enough...
 	private DateTime timestamp;
 	protected BigDecimal amount;
 	
@@ -81,6 +84,11 @@ public abstract class Movement {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

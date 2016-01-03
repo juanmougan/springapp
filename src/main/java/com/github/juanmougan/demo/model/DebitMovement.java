@@ -18,6 +18,10 @@ import org.joda.time.DateTime;
 @DiscriminatorValue("D")
 public class DebitMovement extends Movement {
 	
+	public DebitMovement() {
+		super();
+	}
+
 	public DebitMovement(DateTime timestamp, BigDecimal amount, Account account) {
 		super(timestamp, amount, account);
 	}

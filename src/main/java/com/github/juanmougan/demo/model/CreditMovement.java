@@ -18,6 +18,10 @@ import org.joda.time.DateTime;
 @DiscriminatorValue("C")
 public class CreditMovement extends Movement {
 	
+	public CreditMovement() {
+		super();
+	}
+
 	public CreditMovement(DateTime timestamp, BigDecimal amount, Account account) {
 		super(timestamp, amount, account);
 	}
